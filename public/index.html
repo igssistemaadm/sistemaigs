@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IGS | Login</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+    <body data-login-page>
+    <main class="page">
+      <section class="shell">
+        <div class="hero">
+          <div>
+            <div class="brand">
+              <img src="/logo.png" alt="IGS Automacao Comercial" />
+            </div>
+          </div>
+        </div>
+
+        <section class="card">
+          <h2>Entrar</h2>
+          <p class="subtitle">Use seu usuario e senha para acessar o sistema.</p>
+
+          <form class="grid" data-login-form>
+            <label>
+              Usuario
+              <input name="username" autocomplete="username" required />
+            </label>
+            <label>
+              Senha
+              <input type="password" name="password" autocomplete="current-password" required />
+            </label>
+            <div class="actions">
+              <button type="submit">Acessar</button>
+              <a href="/usuarios.html">Usuarios admin</a>
+            </div>
+          </form>
+
+          <div class="status" data-status></div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

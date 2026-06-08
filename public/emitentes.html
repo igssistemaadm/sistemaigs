@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IGS | Emitentes</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <main class="page">
+      <section class="shell">
+        <div class="hero">
+          <div>
+            <div class="brand">
+              <img src="/logo.png" alt="IGS Automacao Comercial" />
+            </div>
+            <h1>Cadastro de emitente</h1>
+            <p>Primeiro passo do sistema com a identidade visual da IGS aplicada no painel.</p>
+            <div class="meta">
+              <span class="pill">Cadastro e listagem de emitentes</span>
+              <span class="pill">Autenticacao via JWT</span>
+              <span class="pill">IGS Automacao Comercial</span>
+            </div>
+          </div>
+          <div>
+            <a href="/usuarios.html">Usuarios admin</a>
+            <span style="margin:0 10px; color:#94a3b8;">|</span>
+            <a href="/">Sair</a>
+          </div>
+        </div>
+
+        <section class="card">
+          <h2>Novo emitente</h2>
+          <p class="subtitle">Preencha os dados principais para iniciar o cadastro.</p>
+
+          <form class="grid two" data-emitente-form>
+            <label>
+              Razao social
+              <input name="razaoSocial" required />
+            </label>
+            <label>
+              Nome fantasia
+              <input name="nomeFantasia" />
+            </label>
+            <label>
+              Documento
+              <input name="documento" required />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" />
+            </label>
+            <label>
+              Telefone
+              <input name="telefone" />
+            </label>
+            <label>
+              CEP
+              <input name="cep" />
+            </label>
+            <label>
+              Logradouro
+              <input name="logradouro" />
+            </label>
+            <label>
+              Numero
+              <input name="numero" />
+            </label>
+            <label>
+              Complemento
+              <input name="complemento" />
+            </label>
+            <label>
+              Bairro
+              <input name="bairro" />
+            </label>
+            <label>
+              Cidade
+              <input name="cidade" />
+            </label>
+            <label>
+              Estado
+              <input name="estado" />
+            </label>
+            <div class="actions" style="grid-column: 1 / -1;">
+              <button type="submit">Salvar emitente</button>
+              <a href="/">Voltar ao login</a>
+            </div>
+          </form>
+
+          <div class="status" data-status></div>
+
+          <div class="panel">
+            <h3>Emitentes cadastrados</h3>
+            <div class="table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Razao social</th>
+                    <th>Nome fantasia</th>
+                    <th>Documento</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+                <tbody data-emitentes></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

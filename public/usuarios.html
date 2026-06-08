@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IGS | Usuarios Admin</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body data-users-page>
+    <main class="page">
+      <section class="shell">
+        <div class="hero">
+          <div>
+            <div class="brand">
+              <img src="/logo.png" alt="IGS Automacao Comercial" />
+            </div>
+            <h1>Usuarios admin</h1>
+            <p>Cadastro e controle dos acessos do sistema com o padrao visual da IGS.</p>
+            <div class="meta">
+              <span class="pill">Alex, Ismael, Mika e Daisa preparados</span>
+              <span class="pill">Usuario reconhecido sem diferenca de caixa</span>
+            </div>
+          </div>
+          <div>
+            <a href="/emitentes.html">Emitentes</a>
+            <span style="margin:0 10px; color:#94a3b8;">|</span>
+            <a href="/">Sair</a>
+          </div>
+        </div>
+
+        <section class="card">
+          <h2>Novo usuario</h2>
+          <p class="subtitle">Somente administradores podem cadastrar novos usuarios.</p>
+
+          <form class="grid two" data-user-form>
+            <label>
+              Nome
+              <input name="name" required />
+            </label>
+            <label>
+              Usuario
+              <input name="username" required />
+            </label>
+            <label>
+              Email
+              <input type="email" name="email" />
+            </label>
+            <label>
+              Perfil
+              <input name="role" placeholder="ADMIN, MANAGER ou USER" />
+            </label>
+            <label style="grid-column: 1 / -1;">
+              Senha
+              <input type="password" name="password" required />
+            </label>
+            <div class="actions" style="grid-column: 1 / -1;">
+              <button type="submit">Salvar usuario</button>
+              <a href="/emitentes.html">Voltar</a>
+            </div>
+          </form>
+
+          <div class="status" data-status></div>
+
+          <div class="panel">
+            <h3>Usuarios cadastrados</h3>
+            <div class="table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Nome</th>
+                    <th>Usuario</th>
+                    <th>Email</th>
+                    <th>Perfil</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody data-users></tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

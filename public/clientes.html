@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IGS | Clientes</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body data-clients-page>
+    <main class="dashboard-page">
+      <header class="topbar">
+        <div class="topbar-brand">
+          <img src="/logo.png" alt="IGS Automacao Comercial" />
+          <div>
+            <strong>IGS Automacao Comercial</strong>
+            <span>Cadastro de clientes</span>
+          </div>
+        </div>
+        <div class="topbar-actions">
+          <a class="topbar-link" href="/dashboard.html">Painel</a>
+          <a class="topbar-link" href="/emitentes.html">Emitentes</a>
+          <a class="topbar-link danger" href="/">Sair</a>
+        </div>
+      </header>
+
+      <section class="client-card client-single">
+        <div class="client-topline">
+          <div>
+            <p class="eyebrow">Cadastro padronizado</p>
+            <h1>Clientes</h1>
+          </div>
+        </div>
+
+        <form class="grid client-form" data-client-form>
+          <input type="hidden" name="tipo_cliente" value="PF" />
+          <input type="hidden" name="cliente_id" value="" />
+
+          <div class="client-tabs" role="tablist">
+            <button class="client-tab active" type="button" data-client-tab="pf">Pessoa Física</button>
+            <button class="client-tab" type="button" data-client-tab="pj">Pessoa Jurídica</button>
+          </div>
+
+            <div class="client-panel active" data-panel="pf">
+              <h2>Dados PF</h2>
+              <div class="grid two">
+                <label>
+                  Nome completo
+                  <input name="pf_nome_completo" />
+                </label>
+                <label>
+                  CPF
+                  <input name="pf_cpf" />
+                </label>
+                <label>
+                  RG
+                  <input name="pf_rg" />
+                </label>
+                <label>
+                  Telefone
+                  <input name="pf_telefone" />
+                </label>
+                <label>
+                  E-mail
+                  <input type="email" name="pf_email" />
+                </label>
+                <label>
+                  CEP
+                  <input name="pf_cep" />
+                </label>
+                <label>
+                  Logradouro
+                  <input name="pf_logradouro" />
+                </label>
+                <label>
+                  Numero
+                  <input name="pf_numero" />
+                </label>
+                <label>
+                  Bairro
+                  <input name="pf_bairro" />
+                </label>
+                <label>
+                  Cidade
+                  <input name="pf_cidade" />
+                </label>
+                <label>
+                  UF
+                  <input name="pf_uf" maxlength="2" />
+                </label>
+                <label>
+                  Complemento
+                  <input name="pf_complemento" />
+                </label>
+              </div>
+            </div>
+
+            <div class="client-panel" data-panel="pj">
+              <h2>Dados PJ</h2>
+              <div class="grid two">
+                <label>
+                  Razao social
+                  <input name="pj_razao_social" />
+                </label>
+                <label>
+                  Nome fantasia
+                  <input name="pj_nome_fantasia" />
+                </label>
+                <label>
+                  CNPJ
+                  <input name="pj_cnpj" />
+                </label>
+                <label>
+                  Inscricao estadual
+                  <input name="pj_inscricao_estadual" placeholder="Isento ou numero" />
+                </label>
+                <label>
+                  CNAE principal
+                  <input name="pj_cnae_principal" />
+                </label>
+                <label>
+                  Telefone de contato
+                  <input name="pj_telefone" />
+                </label>
+                <label>
+                  E-mail faturamento
+                  <input type="email" name="pj_email" />
+                </label>
+                <label>
+                  CEP
+                  <input name="pj_cep" />
+                </label>
+                <label>
+                  Logradouro
+                  <input name="pj_logradouro" />
+                </label>
+                <label>
+                  Numero
+                  <input name="pj_numero" />
+                </label>
+                <label>
+                  Bairro
+                  <input name="pj_bairro" />
+                </label>
+                <label>
+                  Cidade
+                  <input name="pj_cidade" />
+                </label>
+                <label>
+                  UF
+                  <input name="pj_uf" maxlength="2" />
+                </label>
+                <label>
+                  Complemento
+                  <input name="pj_complemento" />
+                </label>
+                <div class="actions full-width">
+                  <button type="button" class="secondary" data-cnpj-consult>Consultar CNPJ</button>
+                </div>
+              </div>
+            </div>
+
+          <div class="client-actions-row" style="grid-column: 1 / -1;">
+            <button type="submit" data-submit-label>Salvar</button>
+            <button type="button" class="secondary" data-inactivate-client>Inativar</button>
+            <button type="button" class="secondary" data-new-client>Novo</button>
+            <button type="button" class="secondary" data-localizar>Localiza</button>
+          </div>
+        </form>
+
+        <div class="status" data-status></div>
+      </section>
+
+      <section class="client-modal" data-client-modal hidden>
+        <div class="client-modal-backdrop" data-client-modal-close></div>
+        <div class="client-modal-panel" role="dialog" aria-modal="true" aria-label="Pesquisa de clientes">
+          <div class="client-modal-header">
+            <div>
+              <p class="eyebrow">Pesquisa inteligente</p>
+              <h2>Localizar cliente</h2>
+              <p class="client-modal-subtitle">Selecione o cliente desejado para editar ou inativar.</p>
+            </div>
+            <button type="button" class="secondary" data-client-modal-close>Fechar</button>
+          </div>
+
+          <div class="client-toolbar modal-toolbar">
+            <label class="client-search-field client-search-wide">
+              Pesquisar por Nome, CPF ou CNPJ
+              <input data-client-search placeholder="Digite para localizar o cliente" />
+            </label>
+            <select class="client-filter" data-client-filter>
+              <option value="all">Todos</option>
+              <option value="nome">Nome</option>
+              <option value="documento">Documento</option>
+            </select>
+            <button type="button" class="secondary modal-search-button" data-client-search-run>Localiza</button>
+          </div>
+
+          <div class="client-results-head">
+            <span>Listagem de Clientes</span>
+            <span data-client-results-count></span>
+          </div>
+          <div class="table client-table-wrap modal-table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Documento</th>
+                  <th>Nome</th>
+                  <th>Fantasia</th>
+                  <th>Contato</th>
+                  <th>Município</th>
+                  <th>UF</th>
+                  <th>Telefone</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody data-clients-list></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script src="/app.js"></script>
+  </body>
+</html>

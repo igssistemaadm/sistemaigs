@@ -1,0 +1,86 @@
+General
+Name
+A unique name for your database.
+igs-postgres
+
+Edit
+Created
+a minute ago
+Status
+available
+PostgreSQL Version
+18
+Region
+Oregon (US West)
+Read Replicas
+
+Add Read Replica
+Storage
+Fetching storage metrics
+Storage Autoscaling
+Disabled
+Datadog API Key
+
+Add Datadog API Key
+Postgres Instance
+Instance Type
+Free
+256 MB
+ RAM
+0.1
+ CPU
+1 GB
+ Storage
+Update
+A credit card is required to change instance types.
+Add payment information
+High Availability
+Run a standby instance of your database and automatically fail over to it if the primary encounters an issue.
+
+
+Disabled
+Only available for Pro instances and higher.
+See upgrade options
+Connections
+Hostname
+An internal hostname used by your Render services.
+dpg-d8jc4ereo5us73aaeidg-a
+
+Port
+5432
+
+Database
+igs_db_0gj2
+
+Username
+igs_user
+
+Password
+Y2DfxfrSU8d89XH8w2EDXDMQC8J4waAq
+
+
+Internal Database URL
+postgresql://igs_user:Y2DfxfrSU8d89XH8w2EDXDMQC8J4waAq@dpg-d8jc4ereo5us73aaeidg-a/igs_db_0gj2
+
+
+External Database URL
+postgresql://igs_user:Y2DfxfrSU8d89XH8w2EDXDMQC8J4waAq@dpg-d8jc4ereo5us73aaeidg-a.oregon-postgres.render.com/igs_db_0gj2
+
+
+PSQL Command
+PGPASSWORD=Y2DfxfrSU8d89XH8w2EDXDMQC8J4waAq psql -h dpg-d8jc4ereo5us73aaeidg-a.oregon-postgres.render.com -U igs_user igs_db_0gj2
+
+
+Credentials
+Create new default credentials and delete the old ones when ready.
+
+Username
+1
+Password
+
+Open Connections
+
+Created
+igs_userDefault	
+••••••••••••
+0	<1m	
