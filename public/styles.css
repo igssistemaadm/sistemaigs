@@ -260,6 +260,46 @@ th {
   color: #334155;
 }
 
+.emitente-form {
+  grid-template-columns: 1fr 1fr;
+}
+
+.emitente-form .actions {
+  justify-content: space-between;
+}
+
+.logo-field {
+  display: grid;
+  gap: 8px;
+}
+
+.logo-field input[type="file"] {
+  padding: 12px 14px;
+  background: #fff;
+}
+
+.logo-hint {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.logo-preview {
+  border: 1px dashed rgba(79, 123, 255, 0.35);
+  border-radius: 20px;
+  padding: 16px;
+  background: linear-gradient(180deg, rgba(79, 123, 255, 0.04), rgba(255, 255, 255, 0.8));
+  min-height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-preview img {
+  max-width: 220px;
+  max-height: 90px;
+  object-fit: contain;
+}
+
 .full-width {
   grid-column: 1 / -1;
 }

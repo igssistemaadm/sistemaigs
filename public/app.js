@@ -49,6 +49,10 @@ function isClientsPage() {
   return Boolean(document.querySelector("[data-clients-page]"));
 }
 
+function isEmitentePage() {
+  return Boolean(document.querySelector("[data-emitente-page]"));
+}
+
 async function loadEmitentes() {
   const table = document.querySelector("[data-emitentes]");
   if (!table) return;
@@ -112,6 +116,11 @@ async function loadUsers() {
   }
 }
 
+async function loadEmitenteCnpj(cnpj) {
+  const response = await api(`/emitentes/consulta-cnpj?cnpj=${encodeURIComponent(cnpj)}`);
+  return response;
+}
+
 async function loadClients(search = "") {
   const grid = document.querySelector("[data-clients-list]");
   const count = document.querySelector("[data-client-results-count]");
@@ -163,6 +172,66 @@ function setInputValue(form, selector, value) {
   if (input instanceof HTMLInputElement || input instanceof HTMLTextAreaElement) {
     input.value = value ?? "";
   }
+}
+
+function setLogoPreview(dataUrl) {
+  const preview = document.querySelector("[data-logo-preview]");
+  if (!(preview instanceof HTMLElement)) return;
+
+  if (!dataUrl) {
+    preview.hidden = true;
+    preview.innerHTML = "";
+    return;
+  }
+
+  preview.hidden = false;
+  preview.innerHTML = `<img src="${dataUrl}" alt="Logo do emitente" />`;
+}
+
+function fillEmitenteFields(data) {
+  const form = document.querySelector("[data-emitente-form]");
+  if (!(form instanceof HTMLFormElement)) return;
+
+  setInputValue(form, 'input[name="documento"]', data.documento);
+  setInputValue(form, 'input[name="razaoSocial"]', data.razaoSocial);
+  setInputValue(form, 'input[name="nomeFantasia"]', data.nomeFantasia);
+  setInputValue(form, 'input[name="inscricaoEstadual"]', data.inscricaoEstadual);
+  setInputValue(form, 'input[name="inscricaoMunicipal"]', data.inscricaoMunicipal);
+  setInputValue(form, 'input[name="regimeTributario"]', data.regimeTributario);
+  setInputValue(form, 'input[name="cnaePrincipal"]', data.cnaePrincipal);
+  setInputValue(form, 'input[name="email"]', data.email);
+  setInputValue(form, 'input[name="telefone"]', data.telefone);
+  setInputValue(form, 'input[name="cep"]', data.cep);
+  setInputValue(form, 'input[name="logradouro"]', data.logradouro);
+  setInputValue(form, 'input[name="numero"]', data.numero);
+  setInputValue(form, 'input[name="complemento"]', data.complemento);
+  setInputValue(form, 'input[name="bairro"]', data.bairro);
+  setInputValue(form, 'input[name="cidade"]', data.cidade);
+  setInputValue(form, 'input[name="estado"]', data.estado);
+}
+
+function attachLogoReader() {
+  const input = document.querySelector("[data-logo-input]");
+  const form = document.querySelector("[data-emitente-form]");
+  if (!(input instanceof HTMLInputElement) || !(form instanceof HTMLFormElement)) return;
+
+  input.addEventListener("change", () => {
+    const file = input.files?.[0];
+    const hidden = form.querySelector('input[name="logoDataUrl"]');
+    if (!file || !hidden) {
+      if (hidden instanceof HTMLInputElement) hidden.value = "";
+      setLogoPreview("");
+      return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      const dataUrl = String(reader.result ?? "");
+      if (hidden instanceof HTMLInputElement) hidden.value = dataUrl;
+      setLogoPreview(dataUrl);
+    };
+    reader.readAsDataURL(file);
+  });
 }
 
 function setEditMode(clientId) {
@@ -384,6 +453,7 @@ document.addEventListener("submit", async (event) => {
         body: JSON.stringify(body),
       });
       form.reset();
+      setLogoPreview("");
       setStatus("Emitente cadastrado com sucesso.");
       await loadEmitentes();
     } catch (error) {
@@ -444,6 +514,33 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (isAdminPage()) {
     loadUsers();
+    return;
+  }
+
+  if (isEmitentePage()) {
+    attachLogoReader();
+
+    const cnpjConsultButton = document.querySelector("[data-emitente-cnpj-consult]");
+    cnpjConsultButton?.addEventListener("click", async () => {
+      const form = document.querySelector("[data-emitente-form]");
+      const documento = form?.querySelector('input[name="documento"]');
+      const cnpj = documento instanceof HTMLInputElement ? documento.value : "";
+
+      if (!cnpj.trim()) {
+        setStatus("Informe um CNPJ para consultar.");
+        return;
+      }
+
+      try {
+        const data = await loadEmitenteCnpj(cnpj);
+        fillEmitenteFields(data);
+        setStatus("CNPJ consultado com sucesso.");
+      } catch (error) {
+        setStatus(error.message);
+      }
+    });
+
+    loadEmitentes();
     return;
   }
 

@@ -6,7 +6,7 @@
     <title>IGS | Emitentes</title>
     <link rel="stylesheet" href="/styles.css" />
   </head>
-  <body>
+  <body data-emitente-page>
     <main class="page">
       <section class="shell">
         <div class="hero">
@@ -15,12 +15,12 @@
               <img src="/logo.png" alt="IGS Automacao Comercial" />
             </div>
             <h1>Cadastro de emitente</h1>
-            <p>Primeiro passo do sistema com a identidade visual da IGS aplicada no painel.</p>
-            <div class="meta">
-              <span class="pill">Cadastro e listagem de emitentes</span>
-              <span class="pill">Autenticacao via JWT</span>
-              <span class="pill">IGS Automacao Comercial</span>
-            </div>
+          <p>Cadastro completo do emitente com consulta de CNPJ, logo e dados fiscais para OS e orçamento.</p>
+          <div class="meta">
+              <span class="pill">Cadastro completo</span>
+              <span class="pill">Consulta de CNPJ</span>
+              <span class="pill">Logo para documentos</span>
+          </div>
           </div>
           <div>
             <a href="/usuarios.html">Usuarios admin</a>
@@ -31,9 +31,14 @@
 
         <section class="card">
           <h2>Novo emitente</h2>
-          <p class="subtitle">Preencha os dados principais para iniciar o cadastro.</p>
+          <p class="subtitle">Preencha os dados principais ou consulte o CNPJ para autofill.</p>
 
-          <form class="grid two" data-emitente-form>
+          <form class="grid two emitente-form" data-emitente-form>
+            <input type="hidden" name="logoDataUrl" value="" />
+            <label>
+              CNPJ
+              <input name="documento" required />
+            </label>
             <label>
               Razao social
               <input name="razaoSocial" required />
@@ -43,16 +48,28 @@
               <input name="nomeFantasia" />
             </label>
             <label>
-              Documento
-              <input name="documento" required />
-            </label>
-            <label>
               Email
               <input type="email" name="email" />
             </label>
             <label>
               Telefone
               <input name="telefone" />
+            </label>
+            <label>
+              Inscricao estadual
+              <input name="inscricaoEstadual" placeholder="Isento ou numero" />
+            </label>
+            <label>
+              Inscricao municipal
+              <input name="inscricaoMunicipal" />
+            </label>
+            <label>
+              Regime tributario
+              <input name="regimeTributario" placeholder="Simples Nacional, Lucro Presumido..." />
+            </label>
+            <label>
+              CNAE principal
+              <input name="cnaePrincipal" />
             </label>
             <label>
               CEP
@@ -82,7 +99,14 @@
               Estado
               <input name="estado" />
             </label>
-            <div class="actions" style="grid-column: 1 / -1;">
+            <label class="logo-field full-width">
+              Logo para OS / Orçamento
+              <input type="file" accept="image/*" data-logo-input />
+              <span class="logo-hint">A imagem será salva no cadastro e usada nos documentos.</span>
+            </label>
+            <div class="logo-preview full-width" data-logo-preview hidden></div>
+            <div class="actions full-width">
+              <button type="button" class="secondary" data-emitente-cnpj-consult>Consultar CNPJ</button>
               <button type="submit">Salvar emitente</button>
               <a href="/">Voltar ao login</a>
             </div>

@@ -26,22 +26,27 @@ model User {
 }
 
 model Emitente {
-  id           String   @id @default(cuid())
-  razaoSocial  String
-  nomeFantasia String?
-  documento    String   @unique
-  email        String?
-  telefone     String?
-  cep          String?
-  logradouro   String?
-  numero       String?
-  complemento  String?
-  bairro       String?
-  cidade       String?
-  estado       String?
-  ativo        Boolean  @default(true)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  id                   String   @id @default(cuid())
+  razaoSocial          String
+  nomeFantasia         String?
+  documento            String   @unique
+  inscricaoEstadual    String?
+  inscricaoMunicipal   String?
+  regimeTributario     String?
+  cnaePrincipal        String?
+  email                String?
+  telefone             String?
+  cep                  String?
+  logradouro           String?
+  numero               String?
+  complemento          String?
+  bairro               String?
+  cidade               String?
+  estado               String?
+  logoDataUrl          String?
+  ativo                Boolean  @default(true)
+  createdAt            DateTime @default(now())
+  updatedAt            DateTime @updatedAt
 }
 
 model Cliente {
