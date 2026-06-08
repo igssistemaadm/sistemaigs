@@ -86,7 +86,7 @@ authRouter.post("/login", async (req, res) => {
   });
 });
 
-authRouter.get("/me", authRequired, async (req, res) => {
+authRouter.get("/me", authRequired, async (req: any, res: any) => {
   const user = await prisma.user.findUnique({
     where: { id: req.user!.userId },
     select: {

@@ -25,7 +25,7 @@ export function authRequired(req: Request, res: Response, next: NextFunction) {
   const token = header.slice(7);
 
   try {
-    const decoded = jwt.verify(token, env.jwtSecret) as jwt.JwtPayload;
+    const decoded = jwt.verify(token, env.jwtSecret) as any;
     req.user = {
       userId: String(decoded.sub),
       role: String(decoded.role),
